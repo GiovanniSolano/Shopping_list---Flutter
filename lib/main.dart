@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/MainScreens/homeScreen.dart';
+import 'package:shopping_list/MainScreens/login/welcomeScreen.dart';
 import 'package:shopping_list/Utils/AssetsImages.dart';
 import 'package:shopping_list/Utils/ConstantsApp.dart';
 import 'package:shopping_list/Utils/TextApp.dart';
+import 'package:shopping_list/Widgets/Design/DesignWidgets.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 void main() {
@@ -39,12 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: ConstantsApp.TIME_SPLASH_SCREEN,
-      navigateAfterSeconds: HomeScreen(),
+      navigateAfterSeconds: WelcomeScreen(),
       image: AssetsImages.ImageLogo(),
-      backgroundColor: Colors.white,
-      photoSize: 100,
-      loaderColor: Theme.of(context).primaryColor,
-      loadingText: Text(TextApp.LOADING),
+      photoSize: 120,
+      loaderColor: Theme.of(context).accentColor,
+      loadingText: Text(
+        TextApp.LOADING,
+        style: TextStyle(color: Theme.of(context).accentColor),
+      ),
+      gradientBackground: DesignWidgets.linearGradientMain(context),
     );
   }
 }
