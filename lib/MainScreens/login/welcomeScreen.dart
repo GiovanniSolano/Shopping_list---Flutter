@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/MainScreens/login/SignUp.dart';
 import 'package:shopping_list/MainScreens/login/loginScreen.dart';
 import 'package:shopping_list/Utils/TextApp.dart';
 import 'package:shopping_list/Widgets/Components/Buttons/myLoginButton.dart';
@@ -43,7 +44,8 @@ Widget _signupButton(BuildContext context) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
-      onPressed: () => print('Botón de registro'),
+      onPressed: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SignUp())),
       child: Text(TextApp.SINGUP,
           style: TextStyle(fontSize: 18, color: Colors.white)),
     ),
@@ -70,8 +72,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 DesignWidgets.titleCustom(),
-                MyLoginButton(TextApp.LOGIN, Theme.of(context).primaryColor,
-                    Colors.white, LoginScreen()),
+                MyLoginButton(
+                  text: TextApp.LOGIN,
+                  colorText: Theme.of(context).primaryColor,
+                  colorButtonBackground: Colors.white,
+                  widgetToNavigate: LoginScreen(),
+                ),
                 _signupButton(context)
               ],
             ),

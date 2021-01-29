@@ -4,6 +4,7 @@ import 'package:shopping_list/MainScreens/login/SignUp.dart';
 import 'package:shopping_list/Utils/TextApp.dart';
 import 'package:shopping_list/Widgets/Components/Buttons/myBackButton.dart';
 import 'package:shopping_list/Widgets/Components/Buttons/myLoginButton.dart';
+import 'package:shopping_list/Widgets/Components/Buttons/mySignUpLabelButton.dart';
 import 'package:shopping_list/Widgets/Components/Containers/ContainerShape01.dart';
 import 'package:shopping_list/Widgets/Components/Fields/myFieldForm.dart';
 import 'package:shopping_list/Widgets/Design/DesignWidgets.dart';
@@ -19,8 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        MyFieldForm(TextApp.EMAIL_ID, false),
-        MyFieldForm(TextApp.PASSWORD, true),
+        MyFieldForm(title: TextApp.EMAIL_ID),
+        MyFieldForm(
+          title: TextApp.PASSWORD,
+          isPassword: true,
+        ),
       ],
     );
   }
@@ -95,7 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Stack(
           children: [
             ContainerShape01(),
-            Positioned(top: height * .025, child: MyBackButton()),
             Container(
               height: double.infinity,
               width: double.infinity,
@@ -111,8 +114,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.only(top: height * .05),
                       child: _emailPasswordWidget(),
                     ),
-                    MyLoginButton(TextApp.LOGIN, Colors.white,
-                        Theme.of(context).primaryColor, HomeScreen()),
+                    MyLoginButton(
+                      text: TextApp.LOGIN,
+                      colorText: Colors.white,
+                      colorButtonBackground: Theme.of(context).primaryColor,
+                      widgetToNavigate: HomeScreen(),
+                    ),
                     _forgottenPassword(),
                     _divider(),
                     Container(
@@ -125,11 +132,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           darkMode: false,
                           text: TextApp.GOOGLE_SIGN),
                     ),
-                    _signUpLabel()
+                    MySignUpLabelButton(
+                      firstText: TextApp.DONT_HAVE_ACCOUNT,
+                      secondText: TextApp.SINGUP,
+                      secondTextColor: Theme.of(context).primaryColor,
+                      widgetToNavigate: SignUp(),
+                    )
                   ],
                 ),
               ),
-            ) //2.5%,
+            ),
+            Positioned(top: height * .025, child: MyBackButton()),
+            //2.5%,
           ],
         ),
       ),
